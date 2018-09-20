@@ -9,6 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%= new HttpURLConnectionTest().print() %>>
+	<%= new HttpURLConnectionTest().print() %>
 </body>
 </html>

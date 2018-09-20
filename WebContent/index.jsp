@@ -12,7 +12,5 @@
 </head>
 <body>
 	<jsp:forward page="exchangeRate.jsp" />
-	<!--<jsp:forward page="test.jsp" />-->
-	
 </body>
 </html>
