@@ -1,4 +1,4 @@
-package pers.zivxary.first.web;
+package pers.zivxary.first.web.view;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
