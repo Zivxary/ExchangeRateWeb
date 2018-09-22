@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@page import="pers.zivxary.first.web.view.ExchangeRateSupport"%>
+<%@page import="pers.zivxary.first.web.view.ChartRateView"%>
+<%@page import="pers.zivxary.first.web.view.SpotRateView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,18 +13,19 @@
 </head>
 <body>
 	<br />
-	<% ExchangeRateSupport support = new ExchangeRateSupport(request, response); %>
-	<form action="<%= request.getContextPath() + "/exchangeRateServlet"%>"
-		method="post">
+	<%
+	    SpotRateView spotRateView = new SpotRateView(session);
+	%>
+	<form action="<%= request.getContextPath() + "/SpotRateServlet" %>" method="post">
 		<label for="day"> 日期：</label> 
-		<input type="text" value="<%= support.getInputDay() %>" name="day" id="day" /> 
+		<input type="text" value="<%= spotRateView.getInputDay() %>" name="day" id="day" /> 
 		<label for="time"> 時間：</label>
-		<input type="text" value="<%= support.getInputTime() %>" name="time" id="time" /> 
+		<input type="text" value="<%= spotRateView.getInputTime() %>" name="time" id="time" /> 
 		<input type="submit" value="提交" />
 	</form>
-	<br /><%= support.getVerifyResult() %>
+	<br /><%= spotRateView.getSpotVerifyResult()%>
 	<br />
-	<br />
+	<br /><%= spotRateView.getTableTime() %>
 	<table border="1">
 		<thead>
 			<tr>
@@ -42,8 +44,43 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%= support.getTable() %>
+			<%= spotRateView.getTable() %>
 		</tbody>
 	</table>
+	<br />
+	<br />
+	<br />
+	<%
+		ChartRateView chartRateView = new ChartRateView(session);
+	%>
+	<form action="<%= request.getContextPath() + "/ChartRateServlet" %>" method="post">
+		<select name="currency">
+			<option value="USD">美元(USD)</option>
+			<option value="CNY">人民幣(CNY)</option>
+			<option value="HKD">港幣(HKD)</option>
+			<option value="JPY">日圓(JPY)</option>
+			<option value="EUR">歐元(EUR)</option>
+			<option value="AUD">澳幣(AUD)</option>
+			<option value="CAD">加拿大幣(CAD)</option>
+			<option value="GBP">英鎊(GBP)</option>
+			<option value="ZAR">南非幣(ZAR)</option>
+			<option value="NZD">紐西蘭幣(NZD)</option>
+			<option value="CHF">瑞士法郎(CHF)</option>
+			<option value="SEK">瑞典幣(SEK)</option>
+			<option value="SGD">新加坡幣(SGD)</option>
+			<option value="MXN">墨西哥披索(MXN)</option>
+			<option value="THB">泰銖(THB)</option>
+		</select>
+		<input type="radio" name="rateType" value="spot" checked/>即期
+		<input type="radio" name="rateType" value="cash" />現金
+		<br /><br />
+		<label for="toDay"> 開始日期：</label> 
+		<input type="text" value="<%=  chartRateView.getInputFromDay() %>" name="fromDay" id="fromDay" />
+		<label for="fromDay"> 結束日期：</label> 
+		<input type="text" value="<%=  chartRateView.getInputToDay() %>" name="toDay" id="toDay" /> 
+		<input type="submit" value="提交" />
+	</form>
+	<br /><%= chartRateView.getChartVerifyResult()%>
+	<br />
 </body>
 </html>
