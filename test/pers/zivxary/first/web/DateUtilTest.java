@@ -5,39 +5,40 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import pers.zivxary.first.web.utils.DateUtil;
+import pers.zivxary.first.web.utils.IDateUtil;
 import pers.zivxary.first.web.utils.VerifyResult;
 
 public class DateUtilTest {
 
-    private DateUtil dateUtil = new DateUtil();
+    private IDateUtil dateUtil = new DateUtil();
 
-    // 日期 成功
+    // 驗證三日內 成功
     @Test
-    public void day_success_test() {
+    public void threeDay_success_test() {
 	VerifyResult actual = null;
 	VerifyResult expected = VerifyResult.SUCCESS;
 
 	actual = dateUtil.verifyThreeDay("2018-09-21");
 	assertEquals(expected, actual);
-	actual = dateUtil.verifyThreeDay("2018-09-19");
+	actual = dateUtil.verifyThreeDay("2018-09-20");
 	assertEquals(expected, actual);
     }
 
-    // 日期 範圍錯誤
+    // 驗證三日內 範圍錯誤
     @Test
-    public void day_range_error_test() {
+    public void threeDay_range_error_test() {
 	VerifyResult actual = null;
 	VerifyResult expected = VerifyResult.RANGE_ERROR;
 
 	actual = dateUtil.verifyThreeDay("2018-09-10");
 	assertEquals(expected, actual);
-	actual = dateUtil.verifyThreeDay("2018-09-25");
+	actual = dateUtil.verifyThreeDay("2018-10-01");
 	assertEquals(expected, actual);
     }
 
-    // 日期 未輸入
+    // 驗證三日內 未輸入
     @Test
-    public void day_null_error_test() {
+    public void threeDay_null_error_test() {
 	VerifyResult actual = null;
 	VerifyResult expected = VerifyResult.NULL_ERROR;
 
@@ -47,18 +48,51 @@ public class DateUtilTest {
 	assertEquals(expected, actual);
     }
 
-    // 日期 格式錯誤
+    // 驗證三日內 格式錯誤
     @Test
-    public void day_format_error_test() {
+    public void threeDay_format_error_test() {
 	VerifyResult actual = null;
 	VerifyResult expected = VerifyResult.FORMAT_ERROR;
 
 	actual = dateUtil.verifyThreeDay("2018-09-31");
 	assertEquals(expected, actual);
-
     }
 
-    // 時間 成功
+    // 驗證三年內 範圍錯誤
+    @Test
+    public void threeYear_range_error_test() {
+	VerifyResult actual = null;
+	VerifyResult expected = VerifyResult.RANGE_ERROR;
+
+	actual = dateUtil.verifyThreeYear("2015-09-10");
+	assertEquals(expected, actual);
+	actual = dateUtil.verifyThreeYear("2019-09-25");
+	assertEquals(expected, actual);
+    }
+
+    // 驗證日期順序 範圍錯誤
+    @Test
+    public void day_range_error_test() {
+	VerifyResult actual = null;
+	VerifyResult expected = VerifyResult.RANGE_ERROR;
+
+	actual = dateUtil.verifyDay("2018-09-23", "2018-09-22");
+	assertEquals(expected, actual);
+    }
+
+    // 驗證日期順序 成功
+    @Test
+    public void day_success_test() {
+	VerifyResult actual = null;
+	VerifyResult expected = VerifyResult.SUCCESS;
+
+	actual = dateUtil.verifyDay("2018-09-21", "2018-09-22");
+	assertEquals(expected, actual);
+	actual = dateUtil.verifyDay("2018-09-22", "2018-09-22");
+	assertEquals(expected, actual);
+    }
+
+    // 驗證時間 成功
     @Test
     public void time_success_test() {
 	VerifyResult actual = null;
@@ -68,7 +102,7 @@ public class DateUtilTest {
 	assertEquals(expected, actual);
     }
 
-    // 時間 未輸入
+    // 驗證時間 未輸入
     @Test
     public void time_null_error_test() {
 	VerifyResult actual = null;
@@ -80,7 +114,7 @@ public class DateUtilTest {
 	assertEquals(expected, actual);
     }
 
-    // 時間 格式錯誤
+    // 驗證時間 格式錯誤
     @Test
     public void time_format_error_test() {
 	VerifyResult actual = null;
