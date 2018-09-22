@@ -5,15 +5,20 @@ import org.json.JSONObject;
 
 public class ExchageRateTable {
 
-    StringBuilder sb = new StringBuilder();
+    private StringBuilder sb = new StringBuilder();
+    private JSONObject data;
 
-    public String html(JSONObject jsonObject) {
+    public ExchageRateTable(JSONObject data) {
+	this.data = new JSONObject(data.getString("d"));
+    }
 
-	JSONArray data = new JSONObject(jsonObject.getString("d")).getJSONArray("Rates");
+    public String getHtml() {
+
+	JSONArray rate = data.getJSONArray("Rates");
 
 	sb.setLength(0);
-	for (int i = 0; i < data.length(); ++i) {
-	    JSONObject cell = data.getJSONObject(i);
+	for (int i = 0; i < rate.length(); ++i) {
+	    JSONObject cell = rate.getJSONObject(i);
 	    sb.append("<tr>");
 	    appendCell(cell, "Title");
 	    appendCell(cell, "BBoardRate");
@@ -31,5 +36,9 @@ public class ExchageRateTable {
 	sb.append("<td>");
 	sb.append(jsonObject.get(key));
 	sb.append("</td>");
+    }
+
+    public String getTime() {
+	return data.get("QuoteTime").toString();
     }
 }
