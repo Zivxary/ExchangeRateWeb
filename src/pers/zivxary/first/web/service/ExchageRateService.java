@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.json.JSONObject;
 
@@ -69,16 +67,6 @@ public class ExchageRateService {
 	conn.setRequestProperty("Referer",
 		"https://www.esunbank.com.tw/bank/personal/deposit/rate/forex/foreign-exchange-rates");
 	return conn;
-    }
-
-    // 取得要POST的參數
-    private String getParameters() {
-	Date date = new Date();
-	SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
-	String day = sdFormat.format(date);
-	sdFormat.applyPattern("HH:mm:ss");
-	String time = sdFormat.format(date);
-	return getParameters(day, time);
     }
 
     // 取得要POST的參數
