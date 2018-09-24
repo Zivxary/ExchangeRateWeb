@@ -2,20 +2,21 @@ package pers.zivxary.first.web.view;
 
 import javax.servlet.http.HttpSession;
 
-import pers.zivxary.first.web.service.ExchageRateService;
+import pers.zivxary.first.web.service.ISpotRateSerivce;
+import pers.zivxary.first.web.service.SpotRateService;
 import pers.zivxary.first.web.utils.SessionUtil;
 
 public class SpotRateView {
 
-    private ExchageRateTable table;
+    private SpotRateTable table;
     private SessionUtil sessionUtil;
 
     public SpotRateView(HttpSession session) {
 	sessionUtil = new SessionUtil(session);
 
-	ExchageRateService service = new ExchageRateService();
-	service.run(getDay(), getTime());
-	table = new ExchageRateTable(service.getJsonObject());
+	ISpotRateSerivce service = new SpotRateService();
+	service.setParameters(getDay(), getTime());
+	table = new SpotRateTable(service.getData());
     }
 
     /**
