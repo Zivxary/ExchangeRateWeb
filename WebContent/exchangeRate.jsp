@@ -82,5 +82,100 @@
 	</form>
 	<br /><%= chartRateView.getChartVerifyResult()%>
 	<br />
+	<script src="<%= request.getContextPath() + "/js/Chart.bundle.min.js" %>"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<div style="position: relative; height:600px; width:600px">
+		<canvas id="myChart"></canvas>
+	</div>
+	<script>
+	var ctx = document.getElementById('myChart').getContext('2d');
+	var ChartDefault = Chart.defaults.global;
+	ChartDefault.defaultFontFamily = 
+		"'微軟正黑體','Microsoft JhengHei','Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+	ChartDefault.elements.point.pointStyle = 'rectRot';
+	ChartDefault.elements.point.borderWidth = 6;
+	ChartDefault.elements.point.hitRadius = 10;
+	ChartDefault.elements.point.hoverRadius = 6;
+	var chart = new Chart(ctx, {
+
+    	type: 'line',
+
+    	data:
+    	{
+        	labels: ["January", "February", "March", "April", "May", "June", "July"],
+        	yAxisID: "美元即期",
+        	datasets: 
+        	[
+        		{
+            		label: "買匯",
+            		backgroundColor: 'rgba(255, 255, 255, 0)',
+            		borderColor: 'rgb(0, 0, 255)',
+            		data: [23,30.5,31,28,26,24]
+        		},
+        		{
+            		label: "賣匯",
+            		backgroundColor: 'rgba(255, 255, 255, 0)',
+            		borderColor: 'rgb(255, 0, 0)',
+            		data: [25,30,29,33,24,28]
+        		}
+        	]
+    	},
+
+    	options: 
+    	{
+    		tooltips:
+    		{
+    			mode: 'point'
+    		},
+    		legend: 
+    		{
+    			display: true,
+    			position: 'bottom',
+    			fullWidth: true,
+    			//onClick
+    			//onHover
+    			reverse: false,
+    			labels:
+    			{
+    				boxWidth: 40,
+    				fontSize: 12,
+    				fontStyle: 'normal',
+    				fontColor: '#666',
+    				//fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+    				padding: 10,
+    				//generateLabels
+    				filter: null,
+    				usePointStyle: true
+    			}
+    		},
+    		title: 
+    		{
+    			display: true,
+    			position: 'top', //left, bottom, right
+    			fontSize: 20,
+    			//fontFamily: "'微軟正黑體','Microsoft JhengHei','Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+    			fontColor: '#666',
+    			fontStyle: 'bold',
+    			padding: 5,
+    			//lineHeight: 1.5,
+    			text: '美元匯率'
+    		},
+    		scales:
+    		{
+    			yAxes:
+    			[
+    				{
+    					scaleLabel: 
+    					{
+    						display: true,
+    						labelString: '美元即期',
+    						//fontFamily: "'微軟正黑體','Microsoft JhengHei','Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+    					}
+    				}
+    			]
+    		}
+    	}
+	});
+	</script>
 </body>
 </html>
