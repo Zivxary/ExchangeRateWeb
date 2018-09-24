@@ -8,10 +8,15 @@ public class SpotRateTable {
     private StringBuilder sb = new StringBuilder();
     private JSONObject data;
 
-    public SpotRateTable(JSONObject data) {
-	this.data = new JSONObject(data.getString("d"));
+    public SpotRateTable(String data) {
+	this.data = new JSONObject(new JSONObject(data).getString("d"));
     }
 
+    public String getTime() {
+	return data.get("QuoteTime").toString();
+    }
+
+    // 輸出表格 <tr>...</tr>
     public String getHtml() {
 
 	JSONArray rate = data.getJSONArray("Rates");
@@ -38,7 +43,4 @@ public class SpotRateTable {
 	sb.append("</td>");
     }
 
-    public String getTime() {
-	return data.get("QuoteTime").toString();
-    }
 }
