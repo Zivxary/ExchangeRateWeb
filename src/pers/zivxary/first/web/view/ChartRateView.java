@@ -2,14 +2,20 @@ package pers.zivxary.first.web.view;
 
 import javax.servlet.http.HttpSession;
 
+import pers.zivxary.first.web.service.ChartRateService;
 import pers.zivxary.first.web.utils.SessionUtil;
 
 public class ChartRateView {
 
     private SessionUtil sessionUtil;
+    private ChartRateSupport support;
 
     public ChartRateView(HttpSession session) {
 	sessionUtil = new SessionUtil(session);
+
+	ChartRateService service = new ChartRateService();
+	service.setParameters("CNY", getFromDay(), getToDay());
+	support = new ChartRateSupport(service.getData());
     }
 
     /**
@@ -39,6 +45,30 @@ public class ChartRateView {
      */
     public String getInputToDay() {
 	return sessionUtil.getDayFromSession("inputToDay");
+    }
+
+    public String getChartData() {
+	return support.getFormatJson();
+    }
+
+    public String getBuyRate() {
+	return support.getBuyRates();
+    }
+
+    public String getSellRate() {
+	return support.getSellRates();
+    }
+
+    public String getDates() {
+	return support.getDates();
+    }
+
+    private String getFromDay() {
+	return sessionUtil.getDayFromSession("fromDay");
+    }
+
+    private String getToDay() {
+	return sessionUtil.getDayFromSession("toDay");
     }
 
 }
