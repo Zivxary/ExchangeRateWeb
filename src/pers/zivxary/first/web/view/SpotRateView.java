@@ -8,7 +8,7 @@ import pers.zivxary.first.web.utils.SessionUtil;
 
 public class SpotRateView {
 
-    private SpotRateTable table;
+    private SpotRateJson table;
     private SessionUtil sessionUtil;
 
     public SpotRateView(HttpSession session) {
@@ -16,7 +16,7 @@ public class SpotRateView {
 
 	ISpotRateSerivce service = new SpotRateService();
 	service.setParameters(getDay(), getTime());
-	table = new SpotRateTable(service.getData());
+	table = new SpotRateJson(service.getData());
     }
 
     /**
