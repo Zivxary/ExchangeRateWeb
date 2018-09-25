@@ -42,4 +42,16 @@ public class SessionUtil {
 	String s = (String) session.getAttribute(key);
 	return (s == null) ? defaultVal : s;
     }
+
+    /**
+     * 從session.getAttribute 取key，如果有就返回，沒有就返回defaultVal
+     * 
+     * @param key        鍵值
+     * @param defaultVal 沒有值時的返回值
+     * @return 返回取到的值，沒有就返回defaultVal
+     */
+    public Object getFormSession(String key, Object defaultVal) {
+	Object o = session.getAttribute(key);
+	return (o == null) ? defaultVal : o;
+    }
 }
