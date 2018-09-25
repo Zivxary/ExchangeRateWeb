@@ -3,6 +3,8 @@ package pers.zivxary.first.web.service;
 import java.io.IOException;
 
 import pers.zivxary.first.web.connection.RateConnection;
+import pers.zivxary.first.web.type.CurrencyType;
+import pers.zivxary.first.web.type.RateType;
 
 public class ChartRateService {
 
@@ -25,10 +27,12 @@ public class ChartRateService {
     }
 
     // 設置要POST的參數
-    public void setParameters(String currency, String startDate, String endDate) {
-	// String parameter = "{data:{\"Currency\":\" + currency + \",\"Startdate\":\" +
-	// startDate + \",\"Enddate\":\" + endDate + \"}}";
-	String parameter = "{data:{\"Currency\":\"CNY\",\"Currencytype\":\"1\",\"Rangetype\":\"0\",\"Startdate\":\"2017-09-24\",\"Enddate\":\"2018-09-24\"}}";
+    public void setParameters(CurrencyType currencyType, RateType rateType, String startDate, String endDate) {
+
+	String parameter = "{data:{\"Currency\":\"" + currencyType.name() + "\",\"Currencytype\":\"" + rateType.getId()
+		+ "\",\"Rangetype\":\"0\",\"Startdate\":\"" + startDate + "\",\"Enddate\":\"" + endDate
+		+ "\",\"CurrencyTitle\":\"" + currencyType.getFullName() + "\"}}";
+
 	conn.setParameter(parameter);
     }
 
