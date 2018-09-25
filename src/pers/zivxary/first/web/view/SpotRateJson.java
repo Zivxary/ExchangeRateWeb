@@ -3,12 +3,12 @@ package pers.zivxary.first.web.view;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class SpotRateTable {
+public class SpotRateJson {
 
     private StringBuilder sb = new StringBuilder();
     private JSONObject data;
 
-    public SpotRateTable(String data) {
+    public SpotRateJson(String data) {
 	this.data = new JSONObject(new JSONObject(data).getString("d"));
     }
 
