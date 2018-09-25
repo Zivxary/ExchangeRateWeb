@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import pers.zivxary.first.web.type.VerifyResult;
 import pers.zivxary.first.web.utils.DateUtil;
 import pers.zivxary.first.web.utils.IDateUtil;
-import pers.zivxary.first.web.utils.VerifyResult;
 
 public class DateUtilTest {
 

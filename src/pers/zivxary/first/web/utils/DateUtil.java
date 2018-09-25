@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import pers.zivxary.first.web.type.VerifyResult;
+
 public class DateUtil implements IDateUtil {
 
     private static final long ONE_DAY = 24 * 60 * 60 * 1000;
