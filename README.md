@@ -21,4 +21,6 @@
 * 沒有使用AJAX更新資料
 * 沒有頁籤可以切換
 
+<br>目前成果
+<br>
 ![](https://github.com/Zivxary/ExchangeRateWeb/blob/master/%E9%A0%90%E8%A6%BD.jpg)
