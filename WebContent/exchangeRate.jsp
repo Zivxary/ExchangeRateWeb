@@ -9,7 +9,7 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>即期匯率</title>
+<title>簡易匯率網站</title>
 </head>
 <body>
 	<script src="<%= request.getContextPath() + "/js/Chart.bundle.min.js" %>" type="text/javascript"></script>
