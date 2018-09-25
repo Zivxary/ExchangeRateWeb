@@ -6,16 +6,13 @@ var defaultPoint = ChartDefault.elements.point;
 defaultPoint.pointStyle = 'rectRot';
 defaultPoint.radius = 1;
 defaultPoint.borderWidth = 4;
-defaultPoint.hitRadius = 1;
-defaultPoint.hoverRadius = 5;
-		
-var setting = function(dates,buyRates,sellRates) {
+defaultPoint.hoverRadius = 5;		
+var setting = function(dates,buyRates,sellRates,currency,rateType) {
 	return {
 		    	type: 'line',
 		    	data:
 		    	{
 		        	labels: dates,
-		        	yAxisID: "美元即期",
 		        	datasets: 
 		        	[
 		        		{
@@ -34,6 +31,8 @@ var setting = function(dates,buyRates,sellRates) {
 		    	},
 		    	options: 
 		    	{
+		    		responsive: true,
+		    		maintainAspectRatio: false,
 		    		tooltips:
 		    		{
 		    			mode: 'point'
@@ -55,7 +54,7 @@ var setting = function(dates,buyRates,sellRates) {
 		    			display: true,
 		    			fontSize: 20,
 		    			padding: 5,
-		    			text: '美元匯率'
+		    			text: currency + '匯率'
 		    		},
 		    		scales:
 		    		{
@@ -69,7 +68,7 @@ var setting = function(dates,buyRates,sellRates) {
 		    					scaleLabel: 
 		    					{
 		    						display: true,
-		    						labelString: '美元即期',
+		    						labelString: currency + rateType,
 		    					}
 		    				}
 		    			]
