@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pers.zivxary.first.web.type.VerifyResult;
 import pers.zivxary.first.web.utils.DateUtil;
 import pers.zivxary.first.web.utils.IDateUtil;
-import pers.zivxary.first.web.utils.VerifyResult;
 
 @WebServlet("/SpotRateServlet")
 public class SpotRateServlet extends HttpServlet {
