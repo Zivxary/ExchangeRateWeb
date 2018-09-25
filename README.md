@@ -21,6 +21,13 @@
 * 沒有使用AJAX更新資料
 * 沒有頁籤可以切換
 
+專案部分：
+* git 常常檔案改了一大堆才上傳，導致commit message不精確
+* 使用 request.getRequestDispatcher(...).forward(request, response)似乎不是很好
+* EL表達式、JSTL 沒用，也不會用，之後再補
+* web.xml 如何使用，還是一頭霧水，雖然這專案沒用到，但知道很重要
+* Javascript 只會最基礎的，稍微能修改點東西的程度
+* 沒有為以後可能增加DataBase 預留擴充性
 
 ### 目前成果
 ---
