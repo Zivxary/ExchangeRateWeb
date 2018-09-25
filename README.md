@@ -20,3 +20,5 @@
 * 如果POST相同資料，沒有預留備份，需要再去撈一次
 * 沒有使用AJAX更新資料
 * 沒有頁籤可以切換
+
+![](https://github.com/Zivxary/ExchangeRateWeb/blob/master/%E9%A0%90%E8%A6%BD.jpg)
