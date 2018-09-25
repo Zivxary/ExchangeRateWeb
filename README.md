@@ -23,7 +23,6 @@
 
 專案部分：
 * git 常常檔案改了一大堆才上傳，導致commit message不精確
-* 使用 request.getRequestDispatcher(...).forward(request, response)似乎不是很好
 * JSP只有大量使用 <% %> 跟 <%= %>，其他還要查才會用
 * web.xml 如何使用，還是一頭霧水，雖然這專案沒用到，但知道很重要
 * Javascript 只會最基礎的，稍微能修改點東西的程度
