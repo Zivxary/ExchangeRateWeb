@@ -1,5 +1,7 @@
 package pers.zivxary.first.web.utils;
 
+import pers.zivxary.first.web.type.VerifyResult;
+
 public interface IDateUtil {
 
     /**
