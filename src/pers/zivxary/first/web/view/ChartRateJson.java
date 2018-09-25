@@ -13,7 +13,6 @@ public class ChartRateJson {
     private JSONArray rateArray;
 
     public ChartRateJson(String data) {
-	System.out.println(data);
 	base = new JSONObject(new JSONObject(data).getString("d"));
 	rateArray = base.getJSONArray("Rates");
     }
