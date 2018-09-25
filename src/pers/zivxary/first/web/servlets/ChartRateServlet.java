@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pers.zivxary.first.web.type.CurrencyType;
+import pers.zivxary.first.web.type.RateType;
+import pers.zivxary.first.web.type.VerifyResult;
 import pers.zivxary.first.web.utils.DateUtil;
 import pers.zivxary.first.web.utils.IDateUtil;
-import pers.zivxary.first.web.utils.VerifyResult;
 
 @WebServlet("/ChartRateServlet")
 public class ChartRateServlet extends HttpServlet {
@@ -25,6 +27,21 @@ public class ChartRateServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+	verifyDate(request);
+
+	// TODO 驗證待補
+	HttpSession session = request.getSession();
+	String currency = request.getParameter("currency");
+	String rateType = request.getParameter("rateType");
+	session.setAttribute("currency", CurrencyType.valueOf(currency));
+	session.setAttribute("rateType", RateType.valueOf(rateType));
+
+	request.getRequestDispatcher("/exchangeRate.jsp").forward(request, response);
+	return;
+
+    }
+
+    private void verifyDate(HttpServletRequest request) {
 	HttpSession session = request.getSession();
 
 	String fromDay = request.getParameter("fromDay");
@@ -49,13 +66,8 @@ public class ChartRateServlet extends HttpServlet {
 	}
 
 	session.setAttribute("verifyChartResult", verifyResult);
-
 	session.setAttribute("inputFromDay", fromDay);
 	session.setAttribute("inputToDay", toDay);
-
-	request.getRequestDispatcher("/exchangeRate.jsp").forward(request, response);
-	return;
-
     }
 
     private String verifyFromDay(VerifyResult result) {
