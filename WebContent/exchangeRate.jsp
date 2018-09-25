@@ -12,6 +12,8 @@
 <title>即期匯率</title>
 </head>
 <body>
+	<script src="<%= request.getContextPath() + "/js/Chart.bundle.min.js" %>" type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
 	<br />
 	<%
 	    SpotRateView spotRateView = new SpotRateView(session);
@@ -54,25 +56,10 @@
 		ChartRateView chartRateView = new ChartRateView(session);
 	%>
 	<form action="<%= request.getContextPath() + "/ChartRateServlet" %>" method="post">
-		<select name="currency">
-			<option value="USD">美元(USD)</option>
-			<option value="CNY">人民幣(CNY)</option>
-			<option value="HKD">港幣(HKD)</option>
-			<option value="JPY">日圓(JPY)</option>
-			<option value="EUR">歐元(EUR)</option>
-			<option value="AUD">澳幣(AUD)</option>
-			<option value="CAD">加拿大幣(CAD)</option>
-			<option value="GBP">英鎊(GBP)</option>
-			<option value="ZAR">南非幣(ZAR)</option>
-			<option value="NZD">紐西蘭幣(NZD)</option>
-			<option value="CHF">瑞士法郎(CHF)</option>
-			<option value="SEK">瑞典幣(SEK)</option>
-			<option value="SGD">新加坡幣(SGD)</option>
-			<option value="MXN">墨西哥披索(MXN)</option>
-			<option value="THB">泰銖(THB)</option>
+		<select name="currency" >
+			<%= chartRateView.getOptions() %>
 		</select>
-		<input type="radio" name="rateType" value="spot" checked/>即期
-		<input type="radio" name="rateType" value="cash" />現金
+			<%= chartRateView.getRaidos() %>
 		<br /><br />
 		<label for="toDay"> 開始日期：</label> 
 		<input type="text" value="<%=  chartRateView.getInputFromDay() %>" name="fromDay" id="fromDay" />
@@ -82,22 +69,23 @@
 	</form>
 	<br /><%= chartRateView.getChartVerifyResult()%>
 	<br />
-	<script src="<%= request.getContextPath() + "/js/Chart.bundle.min.js" %>" type="text/javascript"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/af.js" type="text/javascript"></script>
 	
-	<div style="position: relative; height:1200px; width:1000px">
+	<div >
 		<canvas id="myChart"></canvas>
 	</div>
 	<script src="<%= request.getContextPath() + "/js/PrintChart.js" %>" type="text/javascript"></script>
 	<script>
 		var dates = <%= chartRateView.getDates() %> ;
-		var buyRates = <%= chartRateView.getBuyRate() %>;
-		var sellRates = <%= chartRateView.getSellRate() %>;
+		var buyRates = <%=chartRateView.getBuyRates()%>;
+		var sellRates = <%=chartRateView.getSellRates()%>;
+		var currency = <%= chartRateView.getCurrency() %>;
+		var rateType = <%=chartRateView.getRateName()%>;
 		var ctx = document.getElementById('myChart').getContext('2d');
-		var chart = new Chart(ctx, setting(dates,buyRates,sellRates));
+		var chart = new Chart(ctx, setting(dates,buyRates,sellRates,currency,rateType));
+		chart.canvas.parentNode.style.height = '400px';
+		chart.canvas.parentNode.style.width = '600px';
 	</script>
 	<br />
-	<br /><%= chartRateView.getDates() %>
+	<br />
 </body>
 </html>
