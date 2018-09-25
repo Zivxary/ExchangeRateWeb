@@ -6,13 +6,14 @@ import java.util.stream.IntStream;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ChartRateSupport {
+public class ChartRateJson {
 
     private JSONObject base;
 
     private JSONArray rateArray;
 
-    public ChartRateSupport(String data) {
+    public ChartRateJson(String data) {
+	System.out.println(data);
 	base = new JSONObject(new JSONObject(data).getString("d"));
 	rateArray = base.getJSONArray("Rates");
     }
